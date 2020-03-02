@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IISWebManager.Application\IISWebManager.Application.csproj" />
+    <ProjectReference Include="..\IISWebManager.Core\IISWebManager.Core.csproj" />
   </ItemGroup>
 
 </Project>
