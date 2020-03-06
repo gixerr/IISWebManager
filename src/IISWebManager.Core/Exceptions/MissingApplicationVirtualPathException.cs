@@ -1,5 +1,4 @@
-﻿using System;
-using IISWebManager.Core.Exceptions;
+﻿using IISWebManager.Core.Exceptions;
 
 namespace IISWebManager.Core.Domain
 {

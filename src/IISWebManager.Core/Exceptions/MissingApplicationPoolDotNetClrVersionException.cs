@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IISWebManager.Core.Exceptions
+﻿namespace IISWebManager.Core.Exceptions
 {
     public class MissingApplicationPoolDotNetClrVersionException : DomainException
     {
