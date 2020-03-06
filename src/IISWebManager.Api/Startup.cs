@@ -1,23 +1,37 @@
+using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using IISWebManager.Api.IoC.Builders;
+using IISWebManager.Api.IoC.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Web.Administration;
+using Newtonsoft.Json;
 
 namespace IISWebManager.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            var servicesProvider = new ServicesProvider();
+            servicesProvider.Populate(services).LoadConfiguration(Configuration);
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<ServerManager>().SingleInstance();
+            builder.RegisterModule(new ModulesProvider());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
