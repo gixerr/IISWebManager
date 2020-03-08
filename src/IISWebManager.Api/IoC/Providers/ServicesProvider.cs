@@ -15,10 +15,16 @@ namespace IISWebManager.Api.IoC.Providers
 
         public ServicesProvider Populate(IServiceCollection services)
         {
-            Services = services ?? throw new MissingServicesCollectionException();
-            Services.AddControllers()
+            if (services is null)
+            {
+                throw new MissingServicesCollectionException();
+            }
+
+            services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.Formatting = Formatting.Indented);
+
+            Services = services;
 
             return this;
         }
