@@ -9,16 +9,16 @@ namespace IISWebManager.Infrastructure.Extensions
     {
         public static ApplicationPoolGetDto AsDto(this ApplicationPool applicationPool)
             => new ApplicationPoolGetDto(applicationPool.Name, applicationPool.ManagedRuntimeVersion,
-                applicationPool.ManagedPipelineMode.ToString());
+                applicationPool.ManagedPipelineMode.ToString(), applicationPool.State.ToString());
 
         public static IEnumerable<ApplicationPoolGetDto> AsDto(this ApplicationPoolCollection applicationPoolCollection)
             => applicationPoolCollection
                 .Select(x => new ApplicationPoolGetDto(x.Name, x.ManagedRuntimeVersion, 
-                    x.ManagedPipelineMode.ToString()));
+                    x.ManagedPipelineMode.ToString(), x.State.ToString()));
 
         public static IEnumerable<ApplicationPoolGetDto> AsDto(this IEnumerable<ApplicationPool> applicationPools)
             => applicationPools
                 .Select(x => new ApplicationPoolGetDto(x.Name, x.ManagedRuntimeVersion,
-                    x.ManagedPipelineMode.ToString()));
+                    x.ManagedPipelineMode.ToString(), x.State.ToString()));
     }
 }
