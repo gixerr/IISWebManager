@@ -15,9 +15,25 @@ namespace IISWebManager.Api.Controllers
         [HttpGet]
         public ActionResult Get([FromQuery] BrowseApplicationPools query)
         {
-            var applicationPools = QueryDispatcher.Dispatch(query);
+            var applicationPoolsDto = QueryDispatcher.Dispatch(query);
 
-            return Ok(applicationPools);
+            return Ok(applicationPoolsDto);
+        }
+
+        [HttpGet("contains")]
+        public ActionResult Get([FromQuery] GetApplicationPoolsContainedSubstring query)
+        {
+            var applicationPoolsDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationPoolsDto);
+        }
+
+        [HttpGet("{name}")]
+        public ActionResult Get([FromRoute] GetApplicationPool query)
+        {
+            var applicationPoolDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationPoolDto);
         }
     }
 }
