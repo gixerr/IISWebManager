@@ -1,6 +1,7 @@
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using IISWebManager.Api.Extensions;
 using IISWebManager.Api.IoC.Builders;
 using IISWebManager.Api.IoC.Providers;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,8 @@ namespace IISWebManager.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseErrorHandler();
+            
             app.UseRouting();
 
             app.UseAuthorization();
