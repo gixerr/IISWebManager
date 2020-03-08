@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using IISWebManager.Application.Exceptions;
-using IISWebManager.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ApplicationException = IISWebManager.Application.Exceptions.ApplicationException;
 
 namespace IISWebManager.Infrastructure.Middleware
 {

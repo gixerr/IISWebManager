@@ -1,8 +1,5 @@
-using System;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using IISWebManager.Api.Extensions;
-using IISWebManager.Api.IoC.Builders;
 using IISWebManager.Api.IoC.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Web.Administration;
-using Newtonsoft.Json;
 
 namespace IISWebManager.Api
 {
