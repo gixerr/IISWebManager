@@ -1,4 +1,5 @@
-﻿using IISWebManager.Application.Queries.ApplicationPools;
+﻿using IISWebManager.Application.Commands.ApplicationPools;
+using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,14 @@ namespace IISWebManager.Api.Controllers
             var applicationPoolDto = QueryDispatcher.Dispatch(query);
 
             return Ok(applicationPoolDto);
+        }
+
+        [HttpPut("{applicationPoolName}/stop")]
+        public ActionResult Stop(string applicationPoolName)
+        {
+            CommandDispatcher.Dispatch(new StopApplicationPool(applicationPoolName));
+            
+            return NoContent();
         }
     }
 }
