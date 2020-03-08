@@ -15,5 +15,10 @@ namespace IISWebManager.Infrastructure.Extensions
             => applicationPoolCollection
                 .Select(x => new ApplicationPoolGetDto(x.Name, x.ManagedRuntimeVersion, 
                     x.ManagedPipelineMode.ToString()));
+
+        public static IEnumerable<ApplicationPoolGetDto> AsDto(this IEnumerable<ApplicationPool> applicationPools)
+            => applicationPools
+                .Select(x => new ApplicationPoolGetDto(x.Name, x.ManagedRuntimeVersion,
+                    x.ManagedPipelineMode.ToString()));
     }
 }
