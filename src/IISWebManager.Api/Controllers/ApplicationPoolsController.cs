@@ -44,5 +44,13 @@ namespace IISWebManager.Api.Controllers
             
             return NoContent();
         }
+        
+        [HttpPut("{applicationPoolName}/start")]
+        public ActionResult Start(string applicationPoolName)
+        {
+            CommandDispatcher.Dispatch(new StartApplicationPool(applicationPoolName));
+            
+            return NoContent();
+        }
     }
 }
