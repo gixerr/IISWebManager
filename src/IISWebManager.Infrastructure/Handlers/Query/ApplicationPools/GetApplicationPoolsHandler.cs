@@ -5,7 +5,7 @@ using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 
-namespace IISWebManager.Infrastructure.Handlers.Query
+namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
 {
     public class GetApplicationPoolsHandler : IQueryHandler<BrowseApplicationPools, IEnumerable<ApplicationPoolGetDto>>
     {
@@ -19,11 +19,11 @@ namespace IISWebManager.Infrastructure.Handlers.Query
         {
             if (query is null)
             {
-                throw new MissingQueryException($"Query '{query.GetType().Name}' can't be null");
+                throw new MissingQueryException($"Handler '{GetType().Name}' received null query.");
             }
-            var applicationPools = _applicationPoolFacade.BrowseApplicationPools().AsDto();
+            var applicationPools = _applicationPoolFacade.BrowseApplicationPools();
 
-            return applicationPools;
+            return applicationPools.AsDto();
         }
     }
 }
