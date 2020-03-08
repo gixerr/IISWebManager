@@ -16,6 +16,7 @@ namespace IISWebManager.Api
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
 
         public Startup(IConfiguration configuration)
         {
@@ -34,7 +35,8 @@ namespace IISWebManager.Api
             builder.RegisterModule(new ModulesProvider());
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IHostApplicationLifetime hostApplicationLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -45,10 +47,9 @@ namespace IISWebManager.Api
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.DisposeAutofacContainer(hostApplicationLifetime);
         }
     }
 }
