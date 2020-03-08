@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Web.Administration;
 
@@ -16,8 +17,8 @@ namespace IISWebManager.Infrastructure.Facades
         public ApplicationPoolCollection BrowseApplicationPools()
             => _serverManager.ApplicationPools;
 
-        public ApplicationPoolCollection GetApplicationPools(string subString)
-            => (ApplicationPoolCollection) _serverManager.ApplicationPools.Where(x => x.Name.Contains(subString));
+        public IEnumerable<ApplicationPool> GetApplicationPools(string subString)
+            =>  _serverManager.ApplicationPools.Where(x => x.Name.Contains(subString));
 
         public ApplicationPool GetApplicationPool(string name) =>
             _serverManager.ApplicationPools
