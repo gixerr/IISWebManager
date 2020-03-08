@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using IISWebManager.Application.Exceptions;
 using IISWebManager.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -13,11 +14,14 @@ namespace IISWebManager.Infrastructure.Middleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ErrorHandlerMiddleware> _logger;
+        private readonly IExceptionToResponseMapper _exceptionToResponseMapper;
 
-        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger )
+        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger,
+            IExceptionToResponseMapper exceptionToResponseMapper)
         {
             _next = next;
             _logger = logger;
+            _exceptionToResponseMapper = exceptionToResponseMapper;
         }
 
         public async Task Invoke(HttpContext context)
@@ -33,34 +37,12 @@ namespace IISWebManager.Infrastructure.Middleware
             }
         }
 
-        private static Task HandleErrorAsync(HttpContext context, Exception exception)
+        private Task HandleErrorAsync(HttpContext context, Exception exception)
         {
-            string errorCode;
-            HttpStatusCode statusCode;
-            string message;
-            switch (exception)
-            {
-                case DomainException ex :
-                    errorCode = ex.Code;
-                    message = ex.Message;
-                    statusCode = HttpStatusCode.BadRequest;
-                    break;
-                case ApplicationException ex :
-                    errorCode = ex.Code;
-                    message = ex.Message;
-                    statusCode = HttpStatusCode.BadRequest;
-                    break;
-                default:
-                    errorCode = "Error";
-                    message = "Something went wrong.";
-                    statusCode = HttpStatusCode.BadRequest;
-                    break;
-            }
-
-            var response = new {code = errorCode, message = message};
+            var response = _exceptionToResponseMapper.Map(exception);
             var payload = JsonConvert.SerializeObject(response);
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int) statusCode;
+            context.Response.StatusCode = (int) response.StatusCode;
 
             return context.Response.WriteAsync(payload);
         }
