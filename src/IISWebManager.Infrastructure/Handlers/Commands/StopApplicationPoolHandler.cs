@@ -24,7 +24,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands
 
             if (applicationPool.State == ObjectState.Stopped)
             {
-                throw new ApplicationPoolAlreadyStopped(command.Name);
+                throw new ApplicationPoolAlreadyStoppedException(command.Name);
             }
 
             _applicationPoolFacade.StopApplicationPool(applicationPool);

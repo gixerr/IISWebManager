@@ -23,7 +23,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands
 
             if (applicationPool.State == ObjectState.Started)
             {
-                throw new ApplicationPoolAlreadyStarted(command.Name);
+                throw new ApplicationPoolAlreadyStartedException(command.Name);
             }
             
             _applicationPoolFacade.StartApplicationPool(applicationPool);

@@ -1,6 +1,4 @@
-﻿using IISWebManager.Application.Exceptions;
-
-namespace IISWebManager.Infrastructure.Facades
+﻿namespace IISWebManager.Application.Exceptions
 {
     public class ApplicationPoolNotExistsException : ApplicationException
     {
