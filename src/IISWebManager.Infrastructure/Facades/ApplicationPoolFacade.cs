@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IISWebManager.Application.Exceptions;
 using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Facades
@@ -18,7 +19,7 @@ namespace IISWebManager.Infrastructure.Facades
             => _serverManager.ApplicationPools;
 
         public IEnumerable<ApplicationPool> GetApplicationPools(string subString)
-            =>  _serverManager.ApplicationPools.Where(x => x.Name.Contains(subString));
+            => _serverManager.ApplicationPools.Where(x => x.Name.Contains(subString));
 
         public ApplicationPool GetApplicationPool(string name) =>
             _serverManager.ApplicationPools
@@ -27,7 +28,15 @@ namespace IISWebManager.Infrastructure.Facades
         public void StartApplicationPool(ApplicationPool applicationPool)
             => applicationPool.Start();
 
-        public void StopApplicationPool(ApplicationPool applicationPool) 
+        public void StopApplicationPool(ApplicationPool applicationPool)
             => applicationPool.Stop();
+
+        public void AddApplicationPool(string name, ManagedPipelineMode managedPipelineMode, string managedRuntimeVersion)
+        {
+            var applicationPool = _serverManager.ApplicationPools.Add(name);
+            applicationPool.ManagedPipelineMode = managedPipelineMode;
+            applicationPool.ManagedRuntimeVersion = managedRuntimeVersion;
+            _serverManager.CommitChanges();
+        }
     }
 }

@@ -52,5 +52,13 @@ namespace IISWebManager.Api.Controllers
             
             return NoContent();
         }
+
+        [HttpPost]
+        public ActionResult Add(AddApplicationPool command)
+        {
+            CommandDispatcher.Dispatch(command);
+            
+            return Created($"applicationPools/{command.Name}", null);
+        }
     }
 }
