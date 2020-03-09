@@ -1,6 +1,6 @@
 ﻿using IISWebManager.Application.Commands;
 
-namespace IISWebManager.Infrastructure.Handlers.Commands
+namespace IISWebManager.Infrastructure.Handlers
 {
     public interface ICommandHandler<in T> where T : ICommand
     {

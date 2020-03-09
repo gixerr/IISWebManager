@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using IISWebManager.Application.Commands;
 using IISWebManager.Application.Exceptions;
+using IISWebManager.Infrastructure.Handlers;
 using IISWebManager.Infrastructure.Handlers.Commands;
 
 namespace IISWebManager.Infrastructure.Dispatchers.Command
