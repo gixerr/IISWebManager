@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Web.Administration;
@@ -35,6 +35,12 @@ namespace IISWebManager.Infrastructure.Facades
             var applicationPool = _serverManager.ApplicationPools.Add(name);
             applicationPool.ManagedPipelineMode = managedPipelineMode;
             applicationPool.ManagedRuntimeVersion = managedRuntimeVersion;
+            _serverManager.CommitChanges();
+        }
+
+        public void DeleteApplicationPool(ApplicationPool applicationPool)
+        {
+            _serverManager.ApplicationPools.Remove(applicationPool);
             _serverManager.CommitChanges();
         }
     }

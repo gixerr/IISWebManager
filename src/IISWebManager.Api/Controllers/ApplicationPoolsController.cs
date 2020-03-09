@@ -60,5 +60,13 @@ namespace IISWebManager.Api.Controllers
             
             return Created($"applicationPools/{command.Name}", null);
         }
+
+        [HttpDelete("{name}")]
+        public ActionResult Delete([FromRoute] DeleteApplicationPool command)
+        {
+            CommandDispatcher.Dispatch(command);
+
+            return NoContent();
+        }
     }
 }
