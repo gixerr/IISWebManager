@@ -28,7 +28,7 @@ namespace IISWebManager.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<ServerManager>().SingleInstance();
+            builder.RegisterType<ServerManager>().InstancePerLifetimeScope();
             builder.RegisterModule(new ModulesProvider());
         }
 
