@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Microsoft.Web.Administration;
 
@@ -18,7 +19,7 @@ namespace IISWebManager.Infrastructure.Facades
             => _serverManager.ApplicationPools;
 
         public IEnumerable<ApplicationPool> GetApplicationPools(string subString)
-            => _serverManager.ApplicationPools.Where(x => x.Name.Contains(subString));
+            => _serverManager.ApplicationPools.Where(x => x.Name.ToLower().Contains(subString.ToLower()));
 
         public ApplicationPool GetApplicationPool(string name) =>
             _serverManager.ApplicationPools
