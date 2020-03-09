@@ -5,7 +5,7 @@
         public override string Code => "application_pool_not_exist";
 
         public ApplicationPoolNotExistsException(string name) : base(
-            $"Application pool with provided name '{name}' doesn't exists.")
+            $"Application pool with name '{name}' doesn't exists.")
         {
         }
     }
