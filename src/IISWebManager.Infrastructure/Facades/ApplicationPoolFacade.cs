@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -31,11 +31,13 @@ namespace IISWebManager.Infrastructure.Facades
         public void StopApplicationPool(ApplicationPool applicationPool)
             => applicationPool.Stop();
 
-        public void AddApplicationPool(string name, ManagedPipelineMode managedPipelineMode, string managedRuntimeVersion)
+        public void AddApplicationPool(string name, ManagedPipelineMode managedPipelineMode,
+            string managedRuntimeVersion, bool autoStart)
         {
             var applicationPool = _serverManager.ApplicationPools.Add(name);
             applicationPool.ManagedPipelineMode = managedPipelineMode;
             applicationPool.ManagedRuntimeVersion = managedRuntimeVersion;
+            applicationPool.AutoStart = autoStart;
             _serverManager.CommitChanges();
         }
 

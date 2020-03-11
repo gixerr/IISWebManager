@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Exceptions;
 using IISWebManager.Infrastructure.Facades;
@@ -28,7 +28,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands
                 : throw new InvalidManagedPipelineModeException(command.ManagedPipelineMode);
             
             _applicationPoolFacade.AddApplicationPool(command.Name, managedPipelineMode,
-                command.ManagedRuntimeVersion);
+                command.ManagedRuntimeVersion, command.AutoStart);
         }
     }
 }
