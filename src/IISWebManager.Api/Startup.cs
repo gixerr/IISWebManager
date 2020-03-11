@@ -1,6 +1,8 @@
 using Autofac;
+using AutoMapper;
 using IISWebManager.Api.Extensions;
 using IISWebManager.Api.IoC.Providers;
+using IISWebManager.Infrastructure.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,7 @@ namespace IISWebManager.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<ServerManager>().InstancePerLifetimeScope();
+            builder.RegisterInstance(AutoMapperConfiguration.GetMapper());
             builder.RegisterModule(new ModulesProvider());
         }
 
