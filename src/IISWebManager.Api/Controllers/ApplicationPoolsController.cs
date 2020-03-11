@@ -37,6 +37,14 @@ namespace IISWebManager.Api.Controllers
             return Ok(applicationPoolDto);
         }
 
+        [HttpGet("{applicationPoolName}/detailed")]
+        public ActionResult Get(string applicationPoolName)
+        {
+            var applicationPoolDto = QueryDispatcher.Dispatch(new GetDetailedApplicationPool(applicationPoolName));
+
+            return Ok(applicationPoolDto);
+        }
+
         [HttpPut("{applicationPoolName}/stop")]
         public ActionResult Stop(string applicationPoolName)
         {
