@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IISWebManager.Application.DTO;
+using IISWebManager.Application.Exceptions;
 using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Extensions
@@ -20,5 +21,10 @@ namespace IISWebManager.Infrastructure.Extensions
             => applicationPools
                 .Select(x => new ApplicationPoolGetDto(x.Name, x.ManagedRuntimeVersion,
                     x.ManagedPipelineMode.ToString(), x.State.ToString()));
+
+        public static void ThrowIfNull(this ApplicationPool applicationPool, string name)
+        {
+            if (applicationPool is null) throw new ApplicationPoolNotExistsException(name);
+        }
     }
 }
