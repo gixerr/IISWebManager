@@ -1,7 +1,6 @@
-﻿using IISWebManager.Application.DTO;
+using IISWebManager.Application.DTO;
 using IISWebManager.Application.Exceptions;
 using IISWebManager.Application.Queries.ApplicationPools;
-using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools

@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using IISWebManager.Application.Queries;
 using IISWebManager.Infrastructure.Handlers;
-using IISWebManager.Infrastructure.Handlers.Query;
 
 namespace IISWebManager.Infrastructure.Dispatchers.Query
 {

@@ -1,6 +1,4 @@
-﻿using IISWebManager.Core.Domain;
-
-namespace IISWebManager.Application.DTO
+﻿namespace IISWebManager.Application.DTO
 {
     public class ApplicationPoolGetDto
     {

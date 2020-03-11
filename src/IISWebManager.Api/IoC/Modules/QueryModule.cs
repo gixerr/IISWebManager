@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using IISWebManager.Infrastructure.Dispatchers.Query;
 using IISWebManager.Infrastructure.Handlers;
-using IISWebManager.Infrastructure.Handlers.Query;
 
 namespace IISWebManager.Api.IoC.Modules
 {

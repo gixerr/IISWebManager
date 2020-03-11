@@ -1,5 +1,4 @@
 using Autofac;
-using AutoMapper;
 using IISWebManager.Api.Extensions;
 using IISWebManager.Api.IoC.Providers;
 using IISWebManager.Infrastructure.Mappers;
