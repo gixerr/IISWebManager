@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Exceptions;
 using IISWebManager.Infrastructure.Facades;
 using Microsoft.Web.Administration;
 
-namespace IISWebManager.Infrastructure.Handlers.Commands
+namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 {
     public class AddApplicationPoolHandler : ICommandHandler<AddApplicationPool>
     {
