@@ -5,9 +5,9 @@ namespace IISWebManager.Application.Extensions
 {
     public static class QueryExtensions
     {
-        public static void ThrowIfNull<TResult>(this IQuery<TResult> query, string handlerName)
+        public static void ThrowIfNull<TResult>(this IQuery<TResult> query, string callerName)
         {
-            if (query is null) throw new MissingQueryException($"Handler '{handlerName}' received null query.");
+            if (query is null) throw new MissingQueryException($"Handler '{callerName}' received null query.");
         }
     }
 }
