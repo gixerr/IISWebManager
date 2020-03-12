@@ -10,11 +10,8 @@ namespace IISWebManager.Infrastructure.Mappers
             => new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<ApplicationPool, ApplicationPoolGetDto>()
-                        .ForMember(dm => dm.Status, o => o.MapFrom(sm => sm.State));
-                    
-                    cfg.CreateMap<ApplicationPool, ApplicationPoolGetDetailedDto>()
-                        .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType.ToString()))
-                        .ForMember(dm => dm.StartMode, o => o.MapFrom(sm => sm.StartMode.ToString()));
+                        .ForMember(dm => dm.Status, o => o.MapFrom(sm => sm.State))
+                        .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType.ToString()));
                 })
                 .CreateMapper();
     }
