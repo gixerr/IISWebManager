@@ -1,9 +1,8 @@
 ﻿using IISWebManager.Application.Commands.ApplicationPools;
-using IISWebManager.Application.Exceptions;
+using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
-using Microsoft.Web.Administration;
 
-namespace IISWebManager.Infrastructure.Handlers.Commands
+namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 {
     public class StartApplicationPoolHandler : ICommandHandler<StartApplicationPool>
     {
@@ -16,15 +15,8 @@ namespace IISWebManager.Infrastructure.Handlers.Commands
         public void Handle(StartApplicationPool command)
         {
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
-            if (applicationPool is null)
-            {
-                throw new ApplicationPoolNotExistsException(command.Name);
-            }
-
-            if (applicationPool.State == ObjectState.Started)
-            {
-                throw new ApplicationPoolAlreadyStartedException(command.Name);
-            }
+            applicationPool.ThrowIfNull(command.Name);
+            applicationPool.ThrowIfStarted();
             
             _applicationPoolFacade.StartApplicationPool(applicationPool);
         }

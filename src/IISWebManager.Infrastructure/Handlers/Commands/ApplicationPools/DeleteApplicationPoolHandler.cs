@@ -1,5 +1,5 @@
 ﻿using IISWebManager.Application.Commands.ApplicationPools;
-using IISWebManager.Application.Exceptions;
+using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 
 namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
@@ -15,10 +15,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
         public void Handle(DeleteApplicationPool command)
         {
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
-            if (applicationPool is null)
-            {
-                throw new ApplicationPoolNotExistsException(command.Name);
-            }
+            applicationPool.ThrowIfNull(command.Name);
             
             _applicationPoolFacade.DeleteApplicationPool(applicationPool);
         }

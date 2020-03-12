@@ -1,7 +1,9 @@
 ﻿using System;
 using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Exceptions;
+using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
+using IISWebManager.Infrastructure.Utils;
 using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
@@ -18,14 +20,8 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
         public void Handle(AddApplicationPool command)
         {
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
-            if (applicationPool is {})
-            {
-                throw new ApplicationPoolAlreadyExistsException(command.Name);
-            }
-
-            var managedPipelineMode = Enum.TryParse(command.ManagedPipelineMode, out ManagedPipelineMode mode)
-                ? mode
-                : throw new InvalidManagedPipelineModeException(command.ManagedPipelineMode);
+            applicationPool.ThrowIfExists();
+            var managedPipelineMode = ApplicationPoolUtils.ParseToEnumOrThrow(command.ManagedPipelineMode);
             
             _applicationPoolFacade.AddApplicationPool(command.Name, managedPipelineMode,
                 command.ManagedRuntimeVersion, command.AutoStart);
