@@ -5,6 +5,7 @@ using IISWebManager.Application.DTO;
 using IISWebManager.Application.Extensions;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Facades;
+using IISWebManager.Infrastructure.Utils;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
 {
@@ -18,12 +19,15 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
             _applicationPoolFacade = applicationPoolFacade;
             _mapper = mapper;
         }
+
         public IEnumerable<ApplicationPoolGetDto> Handle(BrowseApplicationPools query)
         {
             query.ThrowIfNull(GetType().Name);
             var applicationPools = _applicationPoolFacade.BrowseApplicationPools();
-            var applicationPoolsDto = applicationPools.Select(_mapper.Map<ApplicationPoolGetDto>);
-            
+            var applicationPoolsDto = applicationPools.Select(_mapper.Map<ApplicationPoolGetDto>).ToList();
+            applicationPoolsDto
+                .ForEach(x => x.Applications = ApplicationPoolUtils.GetNumberOfApplicationPoolApplications(x.Name));
+
             return applicationPoolsDto.OrderBy(x => x.Name);
         }
     }

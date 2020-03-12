@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.Web.Administration;
 
-namespace IISWebManager.Infrastructure.Helpers
+namespace IISWebManager.Infrastructure.Utils
 {
-    public static class ApplicationPoolHelpers
+    public static class ApplicationPoolUtils
     {
         public static int GetNumberOfApplicationPoolApplications(string applicationPoolName)
         {

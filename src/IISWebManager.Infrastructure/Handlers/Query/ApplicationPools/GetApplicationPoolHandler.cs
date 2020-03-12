@@ -4,7 +4,7 @@ using IISWebManager.Application.Extensions;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
-using IISWebManager.Infrastructure.Helpers;
+using IISWebManager.Infrastructure.Utils;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
 {
@@ -24,7 +24,7 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
             var applicationPool = _applicationPoolFacade.GetApplicationPool(query.Name);
             applicationPool.ThrowIfNull(query.Name);
             var applicationPoolDto = _mapper.Map<ApplicationPoolGetDto>(applicationPool);
-            applicationPoolDto.Applications = ApplicationPoolHelpers
+            applicationPoolDto.Applications = ApplicationPoolUtils
                 .GetNumberOfApplicationPoolApplications(applicationPoolDto.Name);
 
             return applicationPoolDto;

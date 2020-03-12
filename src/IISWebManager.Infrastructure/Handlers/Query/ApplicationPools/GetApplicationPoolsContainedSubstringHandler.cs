@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using IISWebManager.Application.DTO;
 using IISWebManager.Application.Extensions;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Facades;
+using IISWebManager.Infrastructure.Utils;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
 {
@@ -24,7 +26,9 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
         {
             query.ThrowIfNull(GetType().Name);
             var applicationPools = _applicationPoolFacade.GetApplicationPools(query.Substring);
-            var applicationPoolsDto = _mapper.Map<IEnumerable<ApplicationPoolGetDto>>(applicationPools);
+            var applicationPoolsDto = _mapper.Map<IEnumerable<ApplicationPoolGetDto>>(applicationPools).ToList();
+            applicationPoolsDto
+                .ForEach(x => x.Applications = ApplicationPoolUtils.GetNumberOfApplicationPoolApplications(x.Name));
 
             return applicationPoolsDto;
         }
