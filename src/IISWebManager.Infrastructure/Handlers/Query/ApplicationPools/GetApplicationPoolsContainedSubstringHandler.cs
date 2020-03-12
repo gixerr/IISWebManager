@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using IISWebManager.Application.DTO;
-using IISWebManager.Application.Exceptions;
+using IISWebManager.Application.Extensions;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
@@ -18,10 +18,7 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
         }
         public IEnumerable<ApplicationPoolGetDto> Handle(GetApplicationPoolsContainedSubstring query)
         {
-            if (query is null)
-            {
-                throw new MissingQueryException($"Handler '{GetType().Name}' received null query.");
-            }
+            query.ThrowIfNull(GetType().Name);
             var applicationPools = _applicationPoolFacade.GetApplicationPools(query.Substring);
 
             return applicationPools.AsDto();
