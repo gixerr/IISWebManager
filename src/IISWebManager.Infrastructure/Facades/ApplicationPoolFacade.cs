@@ -40,6 +40,9 @@ namespace IISWebManager.Infrastructure.Facades
             _serverManager.CommitChanges();
         }
 
+        public void EditApplicationPool() 
+            => _serverManager.CommitChanges();
+
         public void DeleteApplicationPool(ApplicationPool applicationPool)
         {
             _serverManager.ApplicationPools.Remove(applicationPool);

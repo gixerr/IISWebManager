@@ -12,6 +12,7 @@ namespace IISWebManager.Infrastructure.Facades
         void StopApplicationPool(ApplicationPool applicationPool);
         void AddApplicationPool(string name, ManagedPipelineMode managedPipelineMode, string managedRuntimeVersion,
             bool autoStart);
+        void EditApplicationPool();
         void DeleteApplicationPool(ApplicationPool applicationPool);
     }
 }

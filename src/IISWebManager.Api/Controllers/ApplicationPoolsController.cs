@@ -1,4 +1,4 @@
-using IISWebManager.Application.Commands.ApplicationPools;
+﻿using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
@@ -68,6 +68,14 @@ namespace IISWebManager.Api.Controllers
             CommandDispatcher.Dispatch(command);
             
             return Created($"applicationPools/{command.Name}", null);
+        }
+
+        [HttpPut]
+        public ActionResult Edit(EditApplicationPool command)
+        {
+            CommandDispatcher.Dispatch(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{name}")]
