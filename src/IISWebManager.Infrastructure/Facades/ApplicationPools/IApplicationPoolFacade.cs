@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Web.Administration;
 
-namespace IISWebManager.Infrastructure.Facades
+namespace IISWebManager.Infrastructure.Facades.ApplicationPools
 {
     public interface IApplicationPoolFacade
     {

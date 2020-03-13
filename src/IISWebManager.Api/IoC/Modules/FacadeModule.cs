@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IISWebManager.Infrastructure.Facades;
+using IISWebManager.Infrastructure.Facades.ApplicationPools;
 
 namespace IISWebManager.Api.IoC.Modules
 {

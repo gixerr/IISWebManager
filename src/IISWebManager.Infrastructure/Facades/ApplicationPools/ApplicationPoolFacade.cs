@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Web.Administration;
 
-namespace IISWebManager.Infrastructure.Facades
+namespace IISWebManager.Infrastructure.Facades.ApplicationPools
 {
     public class ApplicationPoolFacade : IApplicationPoolFacade
     {
