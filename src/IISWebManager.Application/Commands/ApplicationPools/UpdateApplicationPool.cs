@@ -1,6 +1,6 @@
 ﻿namespace IISWebManager.Application.Commands.ApplicationPools
 {
-    public class EditApplicationPool : ICommand
+    public class UpdateApplicationPool : ICommand
     {
         public string Name { get; set; }
         public string NewName { get; set; }

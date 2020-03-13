@@ -7,16 +7,16 @@ using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 {
-    public class EditApplicationPoolHandler : ICommandHandler<EditApplicationPool>
+    public class UpdateApplicationPoolHandler : ICommandHandler<UpdateApplicationPool>
     {
         private readonly IApplicationPoolFacade _applicationPoolFacade;
 
-        public EditApplicationPoolHandler(IApplicationPoolFacade applicationPoolFacade)
+        public UpdateApplicationPoolHandler(IApplicationPoolFacade applicationPoolFacade)
         {
             _applicationPoolFacade = applicationPoolFacade;
         }
 
-        public void Handle(EditApplicationPool command)
+        public void Handle(UpdateApplicationPool command)
         {
             command.ThrowIfNull(GetType().Name);
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
@@ -27,7 +27,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
             applicationPool.ManagedRuntimeVersion = command.ManagedRuntimeVersion;
             applicationPool.ProcessModel.IdentityType =
                 ApplicationPoolUtils.ParseToEnumOrThrow<ProcessModelIdentityType>(command.Identity);
-            _applicationPoolFacade.EditApplicationPool();
+            _applicationPoolFacade.UpdateApplicationPool();
         }
     }
 }

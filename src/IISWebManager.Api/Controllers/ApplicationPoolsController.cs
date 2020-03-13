@@ -37,7 +37,7 @@ namespace IISWebManager.Api.Controllers
             return Ok(applicationPoolDto);
         }
 
-        [HttpGet("{applicationPoolName}/edit")]
+        [HttpGet("{applicationPoolName}/editableProperties")]
         public ActionResult Edit(string applicationPoolName)
         {
             var applicationPoolDto =
@@ -71,7 +71,7 @@ namespace IISWebManager.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult Edit(EditApplicationPool command)
+        public ActionResult Update(UpdateApplicationPool command)
         {
             CommandDispatcher.Dispatch(command);
 
