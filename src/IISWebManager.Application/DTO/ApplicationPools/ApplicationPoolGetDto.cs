@@ -1,4 +1,4 @@
-﻿namespace IISWebManager.Application.DTO
+﻿namespace IISWebManager.Application.DTO.ApplicationPools
 {
     public class ApplicationPoolGetDto
     {
