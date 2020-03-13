@@ -9,12 +9,12 @@ using IISWebManager.Infrastructure.Utils;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
 {
-    public class GetApplicationPoolsHandler : IQueryHandler<BrowseApplicationPools, IEnumerable<ApplicationPoolGetDto>>
+    public class BrowseApplicationPoolsHandler : IQueryHandler<BrowseApplicationPools, IEnumerable<ApplicationPoolGetDto>>
     {
         private readonly IApplicationPoolFacade _applicationPoolFacade;
         private readonly IMapper _mapper;
 
-        public GetApplicationPoolsHandler(IApplicationPoolFacade applicationPoolFacade, IMapper mapper)
+        public BrowseApplicationPoolsHandler(IApplicationPoolFacade applicationPoolFacade, IMapper mapper)
         {
             _applicationPoolFacade = applicationPoolFacade;
             _mapper = mapper;
