@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using IISWebManager.Application.Exceptions;
 using Microsoft.Web.Administration;
@@ -17,9 +18,16 @@ namespace IISWebManager.Infrastructure.Utils
                 .Count();
         }
 
-        public static ManagedPipelineMode ParseToEnumOrThrow(string value)
-            => Enum.TryParse(value, out ManagedPipelineMode mode)
+        public static TResult ParseToEnumOrThrow<TResult>(string value) where TResult : struct
+            => Enum.TryParse(value, out TResult mode)
                 ? mode
-                : throw new InvalidManagedPipelineModeException(value);
+                : throw EnumToExceptionMapper[typeof(TResult)](value);
+
+        private static readonly IDictionary<Type, Func<string, Exception>> EnumToExceptionMapper =
+            new Dictionary<Type, Func<string, Exception>>
+            {
+                [typeof(ManagedPipelineMode)] = (name) => new InvalidManagedPipelineModeException(name),
+                [typeof(ProcessModelIdentityType)] = (name) => new InvalidIdentityTypeException(name),
+            };
     }
 }
