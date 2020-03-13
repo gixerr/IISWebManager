@@ -1,9 +1,7 @@
 ﻿using IISWebManager.Application.Commands.ApplicationPools;
-using IISWebManager.Application.Exceptions;
 using IISWebManager.Application.Extensions;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
-using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 {

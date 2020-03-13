@@ -1,6 +1,4 @@
-﻿using System;
-using IISWebManager.Application.Commands.ApplicationPools;
-using IISWebManager.Application.Exceptions;
+﻿using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Extensions;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
