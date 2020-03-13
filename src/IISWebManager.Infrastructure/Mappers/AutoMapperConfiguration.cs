@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using IISWebManager.Application.DTO;
+using IISWebManager.Application.DTO.ApplicationPools;
 using Microsoft.Web.Administration;
 
 namespace IISWebManager.Infrastructure.Mappers
