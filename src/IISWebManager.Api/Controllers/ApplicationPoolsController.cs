@@ -1,4 +1,4 @@
-﻿using IISWebManager.Application.Commands.ApplicationPools;
+using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
@@ -33,6 +33,15 @@ namespace IISWebManager.Api.Controllers
         public ActionResult Get([FromRoute] GetApplicationPool query)
         {
             var applicationPoolDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationPoolDto);
+        }
+
+        [HttpGet("{applicationPoolName}/edit")]
+        public ActionResult Edit(string applicationPoolName)
+        {
+            var applicationPoolDto =
+                QueryDispatcher.Dispatch(new GetEditableApplicationPoolProperties(applicationPoolName));
 
             return Ok(applicationPoolDto);
         }

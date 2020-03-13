@@ -11,7 +11,10 @@ namespace IISWebManager.Infrastructure.Mappers
                 {
                     cfg.CreateMap<ApplicationPool, ApplicationPoolGetDto>()
                         .ForMember(dm => dm.Status, o => o.MapFrom(sm => sm.State))
-                        .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType.ToString()));
+                        .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType));
+                    
+                    cfg.CreateMap<ApplicationPool, ApplicationPoolEditablePropertiesDto>()
+                        .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType));
                 })
                 .CreateMapper();
     }
