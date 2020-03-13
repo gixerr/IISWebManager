@@ -1,4 +1,5 @@
 ﻿using IISWebManager.Application.Commands.ApplicationPools;
+using IISWebManager.Application.Extensions;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 
@@ -14,6 +15,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
         }
         public void Handle(DeleteApplicationPool command)
         {
+            command.ThrowIfNull(command.Name);
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
             applicationPool.ThrowIfNull(command.Name);
             

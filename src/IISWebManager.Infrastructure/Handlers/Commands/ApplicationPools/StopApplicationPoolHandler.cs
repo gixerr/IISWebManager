@@ -1,5 +1,6 @@
 ﻿using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Exceptions;
+using IISWebManager.Application.Extensions;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 using Microsoft.Web.Administration;
@@ -17,6 +18,7 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 
         public void Handle(StopApplicationPool command)
         {
+            command.ThrowIfNull(command.Name);
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
             applicationPool.ThrowIfNull(command.Name);
             applicationPool.ThrowIfStopped();

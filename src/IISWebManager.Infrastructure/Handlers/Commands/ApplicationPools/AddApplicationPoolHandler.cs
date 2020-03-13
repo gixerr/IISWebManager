@@ -1,6 +1,7 @@
 ﻿using System;
 using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Exceptions;
+using IISWebManager.Application.Extensions;
 using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Facades;
 using IISWebManager.Infrastructure.Utils;
@@ -19,10 +20,12 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
 
         public void Handle(AddApplicationPool command)
         {
+            command.ThrowIfNull(command.Name);
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
             applicationPool.ThrowIfExists();
-            var managedPipelineMode = ApplicationPoolUtils.ParseToEnumOrThrow(command.ManagedPipelineMode);
-            
+            var managedPipelineMode =
+                ApplicationPoolUtils.ParseToEnumOrThrow<ManagedPipelineMode>(command.ManagedPipelineMode);
+
             _applicationPoolFacade.AddApplicationPool(command.Name, managedPipelineMode,
                 command.ManagedRuntimeVersion, command.AutoStart);
         }
