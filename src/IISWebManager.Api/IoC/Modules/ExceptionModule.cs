@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using IISWebManager.Application.Exceptions;
+using IISWebManager.Application.Exceptions.Mapper;
 
 namespace IISWebManager.Api.IoC.Modules
 {
