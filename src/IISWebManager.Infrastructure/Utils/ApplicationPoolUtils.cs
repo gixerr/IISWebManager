@@ -8,6 +8,13 @@ namespace IISWebManager.Infrastructure.Utils
 {
     public static class ApplicationPoolUtils
     {
+        private static readonly IDictionary<Type, Func<string, Exception>> EnumToExceptionMapper =
+            new Dictionary<Type, Func<string, Exception>>
+            {
+                [typeof(ManagedPipelineMode)] = (name) => new InvalidManagedPipelineModeException(name),
+                [typeof(ProcessModelIdentityType)] = (name) => new InvalidIdentityTypeException(name),
+            };
+        
         public static int GetNumberOfApplicationPoolApplications(string applicationPoolName)
         {
             using var serverManager = new ServerManager();
@@ -22,12 +29,15 @@ namespace IISWebManager.Infrastructure.Utils
             => Enum.TryParse(value, out TResult mode)
                 ? mode
                 : throw EnumToExceptionMapper[typeof(TResult)](value);
+        
+        public static string GetApplicationPoolStatus(string applicationPoolName)
+        {
+            using var serverManager = new ServerManager();
+            
+            return serverManager.ApplicationPools
+                .Single(x => x.Name.Equals(applicationPoolName, StringComparison.OrdinalIgnoreCase))
+                .State.ToString();
+        }
 
-        private static readonly IDictionary<Type, Func<string, Exception>> EnumToExceptionMapper =
-            new Dictionary<Type, Func<string, Exception>>
-            {
-                [typeof(ManagedPipelineMode)] = (name) => new InvalidManagedPipelineModeException(name),
-                [typeof(ProcessModelIdentityType)] = (name) => new InvalidIdentityTypeException(name),
-            };
     }
 }
