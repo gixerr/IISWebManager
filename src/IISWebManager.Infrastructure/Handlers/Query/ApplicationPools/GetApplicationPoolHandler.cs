@@ -24,8 +24,6 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
             var applicationPool = _applicationPoolFacade.GetApplicationPool(query.Name);
             applicationPool.ThrowIfNull(query.Name);
             var applicationPoolDto = _mapper.Map<ApplicationPoolGetDto>(applicationPool);
-            applicationPoolDto.Applications = ApplicationPoolUtils
-                .GetNumberOfApplicationPoolApplications(applicationPoolDto.Name);
 
             return applicationPoolDto;
         }
