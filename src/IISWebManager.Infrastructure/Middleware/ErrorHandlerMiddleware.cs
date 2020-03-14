@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using IISWebManager.Application.Exceptions;
+using IISWebManager.Application.Exceptions.Mapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
