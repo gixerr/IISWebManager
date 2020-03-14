@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IISWebManager.Infrastructure.Facades.ApplicationPools;
+using IISWebManager.Infrastructure.Facades.Applications;
 
 namespace IISWebManager.Api.IoC.Modules
 {
@@ -9,6 +10,10 @@ namespace IISWebManager.Api.IoC.Modules
         {
             builder.RegisterType<ApplicationPoolFacade>()
                 .As<IApplicationPoolFacade>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationFacade>()
+                .As<IApplicationFacade>()
                 .InstancePerLifetimeScope();
         }
     }
