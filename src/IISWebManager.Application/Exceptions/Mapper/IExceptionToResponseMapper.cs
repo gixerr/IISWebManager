@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IISWebManager.Application.Exceptions
+namespace IISWebManager.Application.Exceptions.Mapper
 {
     public interface IExceptionToResponseMapper
     {

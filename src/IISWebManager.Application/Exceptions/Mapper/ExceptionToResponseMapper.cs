@@ -2,7 +2,7 @@
 using System.Net;
 using IISWebManager.Core.Exceptions;
 
-namespace IISWebManager.Application.Exceptions
+namespace IISWebManager.Application.Exceptions.Mapper
 {
     public sealed class ExceptionToResponseMapper : IExceptionToResponseMapper
     {
