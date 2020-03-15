@@ -27,5 +27,14 @@ namespace IISWebManager.Api.Controllers
 
             return Ok(applicationsDto);
         }
+
+        [HttpGet("contains")]
+        public ActionResult Get([FromQuery] GetApplicationsContainedSubstring query)
+        {
+            var applicationsDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationsDto);
+        }
+        
     }
 }
