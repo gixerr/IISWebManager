@@ -23,7 +23,7 @@ namespace IISWebManager.Infrastructure.Handlers.Query.Applications
         {
             query.ThrowIfNull(GetType().Name);
             var applications = _applicationFacade.BrowseApplications();
-            var applicationsDto = applications.Select(_mapper.Map<ApplicationGetDto>).ToList();
+            var applicationsDto = _mapper.Map<IEnumerable<ApplicationGetDto>>(applications);
 
             return applicationsDto.OrderBy(x => x.Name);
         }
