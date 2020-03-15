@@ -22,7 +22,7 @@ namespace IISWebManager.Infrastructure.Mappers
                         .ForMember(dm => dm.Identity, o => o.MapFrom(sm => sm.ProcessModel.IdentityType));
 
                     cfg.CreateMap<App, ApplicationGetDto>()
-                        .ForMember(dm => dm.Name, o => o.MapFrom(sm => sm.Path.Replace("/", string.Empty)))
+                        .ForMember(dm => dm.Name, o => o.MapFrom(sm => ApplicationUtils.ConvertPathToName(sm.Path)))
                         .ForMember(dm => dm.PhysicalPath,
                             o => o.MapFrom(sm => sm.VirtualDirectories["/"].PhysicalPath))
                         .ForMember(dm => dm.ApplicationPoolStatus,
