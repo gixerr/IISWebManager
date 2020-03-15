@@ -45,7 +45,7 @@ namespace IISWebManager.Infrastructure.Facades.ApplicationPools
 
         public void DeleteApplicationPool(ApplicationPool applicationPool)
         {
-            _serverManager.ApplicationPools.Remove(applicationPool);
+            applicationPool.Delete();
             _serverManager.CommitChanges();
         }
     }
