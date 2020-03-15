@@ -24,7 +24,7 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
         {
             query.ThrowIfNull(GetType().Name);
             var applicationPools = _applicationPoolFacade.BrowseApplicationPools();
-            var applicationPoolsDto = applicationPools.Select(_mapper.Map<ApplicationPoolGetDto>).ToList();
+            var applicationPoolsDto = applicationPools.Select(_mapper.Map<ApplicationPoolGetDto>);
 
             return applicationPoolsDto.OrderBy(x => x.Name);
         }

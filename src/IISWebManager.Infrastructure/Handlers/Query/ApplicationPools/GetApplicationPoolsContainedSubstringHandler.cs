@@ -26,7 +26,7 @@ namespace IISWebManager.Infrastructure.Handlers.Query.ApplicationPools
         {
             query.ThrowIfNull(GetType().Name);
             var applicationPools = _applicationPoolFacade.GetApplicationPools(query.Substring);
-            var applicationPoolsDto = _mapper.Map<IEnumerable<ApplicationPoolGetDto>>(applicationPools).ToList();
+            var applicationPoolsDto = _mapper.Map<IEnumerable<ApplicationPoolGetDto>>(applicationPools);
 
             return applicationPoolsDto;
         }
