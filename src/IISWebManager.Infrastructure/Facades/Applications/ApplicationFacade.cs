@@ -37,12 +37,8 @@ namespace IISWebManager.Infrastructure.Facades.Applications
                 : GetSiteApplications(siteName)
                     .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()));
 
-        public App GetApplication(string name, string siteName = null)
-            => siteName is null
-                ? BrowseApplications()
-                    .SingleOrDefault(x =>
-                        ApplicationUtils.ConvertPathToName(x.Path).Equals(name, StringComparison.OrdinalIgnoreCase))
-                : GetSiteApplications(siteName)
+        public App GetApplication(string name, string siteName)
+            => GetSiteApplications(siteName)
                     .SingleOrDefault(x =>
                         ApplicationUtils.ConvertPathToName(x.Path).Equals(name, StringComparison.OrdinalIgnoreCase));
 
