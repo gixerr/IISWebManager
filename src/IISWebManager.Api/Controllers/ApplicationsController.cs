@@ -19,5 +19,13 @@ namespace IISWebManager.Api.Controllers
 
             return Ok(applicationsDto);
         }
+
+        [HttpGet("site/{name}")]
+        public ActionResult Get([FromRoute] GetSiteApplications query)
+        {
+            var applicationsDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationsDto);
+        }
     }
 }
