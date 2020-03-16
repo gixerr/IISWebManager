@@ -8,10 +8,10 @@ namespace IISWebManager.Infrastructure.Facades.Applications
     public interface IApplicationFacade
     {
         IEnumerable<App> BrowseApplications();
-        ApplicationCollection GetSiteApplications(string siteName);
-        IEnumerable<App> GetApplications(string subString, string siteName);
-        App GetApplication(string name, string siteName);
-        void AddApplication(string name, string physicalPath, string applicationPoolName, string siteName);
+        ApplicationCollection GetSiteApplications(Site site);
+        IEnumerable<App> GetApplications(string subString, Site site);
+        App GetApplication(string name, Site site);
+        void AddApplication(string name, string physicalPath, string applicationPoolName, Site site);
         void UpdateApplication();
         void DeleteApplication(App application);
     }

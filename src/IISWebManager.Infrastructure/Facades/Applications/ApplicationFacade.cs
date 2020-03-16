@@ -21,32 +21,23 @@ namespace IISWebManager.Infrastructure.Facades.Applications
         public IEnumerable<App> BrowseApplications()
             => _serverManager.Sites.SelectMany(x => x.Applications);
 
-        public ApplicationCollection GetSiteApplications(string siteName)
-        {
-            var site = _serverManager.Sites
-                .SingleOrDefault(x => x.Name.Equals(siteName, StringComparison.OrdinalIgnoreCase));
-            site.ThrowIfNull(siteName);
+        public ApplicationCollection GetSiteApplications(Site site) 
+            => site.Applications;
 
-            return site.Applications;
-        }
-
-        public IEnumerable<App> GetApplications(string subString, string siteName = null)
-            => siteName is null
+        public IEnumerable<App> GetApplications(string subString, Site site = null)
+            => site is null
                 ? BrowseApplications()
                     .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()))
-                : GetSiteApplications(siteName)
+                : GetSiteApplications(site)
                     .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()));
 
-        public App GetApplication(string name, string siteName)
-            => GetSiteApplications(siteName)
+        public App GetApplication(string name, Site site)
+            => GetSiteApplications(site)
                     .SingleOrDefault(x =>
                         ApplicationUtils.ConvertPathToName(x.Path).Equals(name, StringComparison.OrdinalIgnoreCase));
 
-        public void AddApplication(string name, string physicalPath, string applicationPoolName, string siteName)
+        public void AddApplication(string name, string physicalPath, string applicationPoolName, Site site)
         {
-            var site = _serverManager.Sites
-                .SingleOrDefault(x => x.Name.Equals(siteName, StringComparison.OrdinalIgnoreCase));
-            site.ThrowIfNull(siteName);
             var path = ApplicationUtils.ConvertNameToPath(name);
             var application = site.Applications.Add(path, physicalPath);
             application.ApplicationPoolName = applicationPoolName;
