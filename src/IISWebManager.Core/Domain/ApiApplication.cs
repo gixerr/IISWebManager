@@ -2,14 +2,14 @@
 
 namespace IISWebManager.Core.Domain
 {
-    public class Application : Model
+    public class ApiApplication : Model
     {
         public string Name { get; private set; }
         public string VirtualPath { get; private set; }
         public string PhysicalPath { get; private set; }
         public ApplicationPool ApplicationPool { get; private set; }
 
-        public Application(string name, string virtualPath, string physicalPath, ApplicationPool applicationPool)
+        public ApiApplication(string name, string virtualPath, string physicalPath, ApplicationPool applicationPool)
         {
             SetNameOrThrow(name);
             SetVirtualPathOrThrow(virtualPath);

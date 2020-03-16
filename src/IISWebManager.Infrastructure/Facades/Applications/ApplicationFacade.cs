@@ -21,15 +21,16 @@ namespace IISWebManager.Infrastructure.Facades.Applications
         public IEnumerable<App> BrowseApplications()
             => _serverManager.Sites.SelectMany(x => x.Applications);
 
-        public ApplicationCollection GetSiteApplications(Site site) 
+        public IEnumerable<App> GetApplications(string subString)
+            => BrowseApplications()
+                .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()));
+
+        public ApplicationCollection GetSiteApplications(Site site)
             => site.Applications;
 
-        public IEnumerable<App> GetApplications(string subString, Site site = null)
-            => site is null
-                ? BrowseApplications()
-                    .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()))
-                : GetSiteApplications(site)
-                    .Where(x => ApplicationUtils.ConvertPathToName(x.Path).ToLower().Contains(subString.ToLower()));
+        public IEnumerable<App> GetSiteApplications(string subString, Site site)
+            => site.Applications.Where(x =>
+                ApplicationUtils.ConvertPathToName(x.Path.ToLower()).Contains(subString.ToLower()));
 
         public App GetApplication(string name, Site site)
             => GetSiteApplications(site)
