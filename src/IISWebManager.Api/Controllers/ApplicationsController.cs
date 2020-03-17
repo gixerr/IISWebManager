@@ -1,4 +1,5 @@
-﻿using IISWebManager.Application.Queries.Applications;
+﻿using IISWebManager.Application.Commands.Applications;
+using IISWebManager.Application.Queries.Applications;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,14 @@ namespace IISWebManager.Api.Controllers
             var applicationPoolDto = QueryDispatcher.Dispatch(query);
 
             return Ok(applicationPoolDto);
+        }
+
+        [HttpPost]
+        public ActionResult Add(AddApplication command)
+        {
+            CommandDispatcher.Dispatch(command);
+
+            return Created($"applications/{command.Name}", null);
         }
     }
 }
