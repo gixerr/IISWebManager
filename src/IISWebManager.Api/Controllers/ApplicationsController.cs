@@ -61,7 +61,7 @@ namespace IISWebManager.Api.Controllers
         {
             CommandDispatcher.Dispatch(command);
 
-            return Created($"applications/{command.Name}", null);
+            return Created($"applications/{command.ApplicationName}", null);
         }
 
         [HttpPut("applications")]

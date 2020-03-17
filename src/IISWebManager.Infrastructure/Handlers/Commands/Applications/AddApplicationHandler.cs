@@ -28,10 +28,10 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.Applications
             site.ThrowIfNull(command.SiteName);
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.ApplicationPoolName);
             applicationPool.ThrowIfNull(command.ApplicationPoolName);
-            var application = _applicationFacade.GetApplication(command.Name, site);
+            var application = _applicationFacade.GetApplication(command.ApplicationName, site);
             application.ThrowIfExists();
 
-            _applicationFacade.AddApplication(command.Name, command.PhysicalPath, command.ApplicationPoolName, site);
+            _applicationFacade.AddApplication(command.ApplicationName, command.PhysicalPath, command.ApplicationPoolName, site);
         }
     }
 }
