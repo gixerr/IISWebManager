@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using IISWebManager.Infrastructure.Facades.ApplicationPools;
 using IISWebManager.Infrastructure.Facades.Applications;
+using IISWebManager.Infrastructure.Facades.Sites;
 
 namespace IISWebManager.Api.IoC.Modules
 {
@@ -8,6 +9,10 @@ namespace IISWebManager.Api.IoC.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<SiteFacade>()
+                .As<ISiteFacade>()
+                .InstancePerLifetimeScope();
+            
             builder.RegisterType<ApplicationPoolFacade>()
                 .As<IApplicationPoolFacade>()
                 .InstancePerLifetimeScope();
