@@ -5,7 +5,6 @@ using IISWebManager.Application.DTO.Applications;
 using IISWebManager.Application.Extensions;
 using IISWebManager.Application.Queries.Applications;
 using IISWebManager.Infrastructure.Facades.Applications;
-using IISWebManager.Infrastructure.Utils;
 
 namespace IISWebManager.Infrastructure.Handlers.Query.Applications
 {

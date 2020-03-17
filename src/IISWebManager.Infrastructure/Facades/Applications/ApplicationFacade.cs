@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using IISWebManager.Core.Exceptions;
-using IISWebManager.Infrastructure.Extensions;
 using IISWebManager.Infrastructure.Utils;
 using Microsoft.Web.Administration;
 using App = Microsoft.Web.Administration.Application;

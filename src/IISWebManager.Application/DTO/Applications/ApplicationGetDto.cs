@@ -1,6 +1,4 @@
-﻿using IISWebManager.Core.Domain;
-
-namespace IISWebManager.Application.DTO.Applications
+﻿namespace IISWebManager.Application.DTO.Applications
 {
     public class ApplicationGetDto
     {

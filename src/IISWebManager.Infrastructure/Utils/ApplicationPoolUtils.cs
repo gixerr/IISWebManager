@@ -38,6 +38,5 @@ namespace IISWebManager.Infrastructure.Utils
                 .Single(x => x.Name.Equals(applicationPoolName, StringComparison.OrdinalIgnoreCase))
                 .State.ToString();
         }
-
     }
 }
