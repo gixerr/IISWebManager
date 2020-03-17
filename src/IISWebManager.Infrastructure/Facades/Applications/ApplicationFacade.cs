@@ -44,9 +44,7 @@ namespace IISWebManager.Infrastructure.Facades.Applications
         }
 
         public void UpdateApplication()
-        {
-            throw new NotImplementedException();
-        }
+            => _serverManager.CommitChanges();
 
         public void DeleteApplication(App application, Site site)
         {

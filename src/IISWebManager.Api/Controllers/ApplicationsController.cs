@@ -64,6 +64,14 @@ namespace IISWebManager.Api.Controllers
             return Created($"applications/{command.Name}", null);
         }
 
+        [HttpPut("applications")]
+        public ActionResult Update(UpdateApplication command)
+        {
+            CommandDispatcher.Dispatch(command);
+
+            return NoContent();
+        }
+
         [HttpDelete("applications")]
         public ActionResult Delete(DeleteApplication command)
         {
