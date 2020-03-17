@@ -25,8 +25,8 @@ namespace IISWebManager.Infrastructure.Handlers.Query.Applications
             query.ThrowIfNull(GetType().Name);
             var site = _siteFacade.GetSite(query.SiteName);
             site.ThrowIfNull(query.SiteName);
-            var application = _applicationFacade.GetApplication(query.Name, site);
-            application.ThrowIfNull(query.Name);
+            var application = _applicationFacade.GetApplication(query.ApplicationName, site);
+            application.ThrowIfNull(query.ApplicationName);
             var applicationDto = _mapper.Map<ApplicationGetDto>(application);
 
             return applicationDto;
