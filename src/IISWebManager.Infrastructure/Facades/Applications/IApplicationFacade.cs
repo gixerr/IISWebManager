@@ -13,6 +13,6 @@ namespace IISWebManager.Infrastructure.Facades.Applications
         App GetApplication(string name, Site site);
         void AddApplication(string name, string physicalPath, string applicationPoolName, Site site);
         void UpdateApplication();
-        void DeleteApplication(App application);
+        void DeleteApplication(App application, Site site);
     }
 }
