@@ -28,6 +28,14 @@ namespace IISWebManager.Infrastructure.Mappers
                         .ForMember(dm => dm.ApplicationPoolStatus,
                             o => o.MapFrom(sm =>
                                 ApplicationPoolUtils.GetApplicationPoolStatus(sm.ApplicationPoolName)));
+                    
+                    cfg.CreateMap<App, ApplicationEditablePropertiesDto>()
+                        .ForMember(dm => dm.Name, o => o.MapFrom(sm => ApplicationUtils.ConvertPathToName(sm.Path)))
+                        .ForMember(dm => dm.PhysicalPath,
+                            o => o.MapFrom(sm => sm.VirtualDirectories["/"].PhysicalPath))
+                        .ForMember(dm => dm.ApplicationPoolStatus,
+                            o => o.MapFrom(sm =>
+                                ApplicationPoolUtils.GetApplicationPoolStatus(sm.ApplicationPoolName)));
                 })
                 .CreateMapper();
     }

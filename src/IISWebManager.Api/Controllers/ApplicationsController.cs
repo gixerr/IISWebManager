@@ -1,4 +1,4 @@
-﻿using IISWebManager.Application.Commands.Applications;
+using IISWebManager.Application.Commands.Applications;
 using IISWebManager.Application.Queries.Applications;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
@@ -45,6 +45,14 @@ namespace IISWebManager.Api.Controllers
             return Ok(applicationPoolDto);
         }
 
+        [HttpGet("{name}/site/{siteName}/editableProperties")]
+        public ActionResult Get([FromRoute] GetEditableApplicationProperties query)
+        {
+            var applicationDto = QueryDispatcher.Dispatch(query);
+
+            return Ok(applicationDto);
+        }
+        
         [HttpPost]
         public ActionResult Add(AddApplication command)
         {
