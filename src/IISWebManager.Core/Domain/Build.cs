@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IISWebManager.Core.Contracts;
 using IISWebManager.Core.Enums;
 using IISWebManager.Core.Exceptions;
 
@@ -7,18 +8,18 @@ namespace IISWebManager.Core.Domain
 {
     public class Build : Model
     {
-        private ISet<BuildApplication> _applications = new HashSet<BuildApplication>();
+        private ISet<IApplicationDto> _applications = new HashSet<IApplicationDto>();
 
         public string Name { get; private set; }
         public BuildStatus Status { get; private set; }
 
-        public IEnumerable<BuildApplication> Applications
+        public IEnumerable<IApplicationDto> Applications
         {
             get => _applications;
-            private set => _applications = new HashSet<BuildApplication>(value);
+            private set => _applications = new HashSet<IApplicationDto>(value);
         }
 
-        public Build(string name, string status, IEnumerable<BuildApplication> applications)
+        public Build(string name, string status, IEnumerable<IApplicationDto> applications)
         {
             SetNameOrThrow(name);
             SetStatusOrThrow(status);
@@ -31,7 +32,7 @@ namespace IISWebManager.Core.Domain
         private void SetStatusOrThrow(string value)
             => Status = Enum.TryParse(value, out BuildStatus status) ? status : throw new InvalidStatusException(value);
 
-        private void SetApplicationsOrThrow(IEnumerable<BuildApplication> value)
+        private void SetApplicationsOrThrow(IEnumerable<IApplicationDto> value)
         {
             if (ValueIsEmpty(value)) throw new MissingBuildApplicationsException();
             
