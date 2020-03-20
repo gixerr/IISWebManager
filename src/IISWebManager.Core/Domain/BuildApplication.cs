@@ -2,19 +2,19 @@
 
 namespace IISWebManager.Core.Domain
 {
-    public class ApiApplication : Model
+    public class BuildApplication : Model
     {
         public string Name { get; private set; }
         public string VirtualPath { get; private set; }
         public string PhysicalPath { get; private set; }
-        public ApplicationPool ApplicationPool { get; private set; }
+        public BuildApplicationPool BuildApplicationPool { get; private set; }
 
-        public ApiApplication(string name, string virtualPath, string physicalPath, ApplicationPool applicationPool)
+        public BuildApplication(string name, string virtualPath, string physicalPath, BuildApplicationPool buildApplicationPool)
         {
             SetNameOrThrow(name);
             SetVirtualPathOrThrow(virtualPath);
             SetPhysicalPathOrThrow(physicalPath);
-            SetApplicationPoolOrThrow(applicationPool);
+            SetApplicationPoolOrThrow(buildApplicationPool);
         }
 
         private void SetNameOrThrow(string value) 
@@ -26,7 +26,7 @@ namespace IISWebManager.Core.Domain
         private void SetPhysicalPathOrThrow(string value)
             => PhysicalPath = ValueIsEmpty(value) ? throw new MissingApplicationPhysicalPathException() : value;
 
-        private void SetApplicationPoolOrThrow(ApplicationPool value)
-            => ApplicationPool = ValueIsEmpty(value) ? throw new MissingApplicationPoolException() : value;
+        private void SetApplicationPoolOrThrow(BuildApplicationPool value)
+            => BuildApplicationPool = ValueIsEmpty(value) ? throw new MissingApplicationPoolException() : value;
     }
 }

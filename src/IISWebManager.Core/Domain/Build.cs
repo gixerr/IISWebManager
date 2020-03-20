@@ -7,18 +7,18 @@ namespace IISWebManager.Core.Domain
 {
     public class Build : Model
     {
-        private ISet<Application> _applications = new HashSet<Application>();
+        private ISet<BuildApplication> _applications = new HashSet<BuildApplication>();
 
         public string Name { get; private set; }
         public BuildStatus Status { get; private set; }
 
-        public IEnumerable<Application> Applications
+        public IEnumerable<BuildApplication> Applications
         {
             get => _applications;
-            private set => _applications = new HashSet<Application>(value);
+            private set => _applications = new HashSet<BuildApplication>(value);
         }
 
-        public Build(string name, string status, IEnumerable<Application> applications)
+        public Build(string name, string status, IEnumerable<BuildApplication> applications)
         {
             SetNameOrThrow(name);
             SetStatusOrThrow(status);
@@ -31,11 +31,11 @@ namespace IISWebManager.Core.Domain
         private void SetStatusOrThrow(string value)
             => Status = Enum.TryParse(value, out BuildStatus status) ? status : throw new InvalidStatusException(value);
 
-        private void SetApplicationsOrThrow(IEnumerable<Application> value)
+        private void SetApplicationsOrThrow(IEnumerable<BuildApplication> value)
         {
             if (ValueIsEmpty(value)) throw new MissingBuildApplicationsException();
             
-            if (AnyInnerValueIsEmpty(value)) throw new InvalidBuildApplicationException();
+            if (AnyCollectionValueIsEmpty(value)) throw new InvalidBuildApplicationException();
             
             Applications = value;
         }

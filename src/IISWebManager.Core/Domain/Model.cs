@@ -11,7 +11,7 @@ namespace IISWebManager.Core.Domain
         protected static bool ValueIsEmpty<T>(IEnumerable<T> value)
             => value is null || !value.Any();
 
-        protected static bool AnyInnerValueIsEmpty<T>(IEnumerable<T> value) where T : class 
+        protected static bool AnyCollectionValueIsEmpty<T>(IEnumerable<T> value) where T : class 
             => value.Any(x => x is null);
         
         protected static bool ValueIsEmpty<T>(T value) where T : class 
