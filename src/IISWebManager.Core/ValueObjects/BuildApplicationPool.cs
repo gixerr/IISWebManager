@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using IISWebManager.Core.Contracts;
+﻿using IISWebManager.Core.Contracts;
 using IISWebManager.Core.Domain;
 using IISWebManager.Core.Exceptions;
 

@@ -1,5 +1,4 @@
-﻿using System.Text.Encodings.Web;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace IISWebManager.Api.Extensions
 {

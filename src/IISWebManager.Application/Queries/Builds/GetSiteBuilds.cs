@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using IISWebManager.Application.DTO.Builds;
-using IISWebManager.Core.Domain;
 
 namespace IISWebManager.Application.Queries.Builds
 {

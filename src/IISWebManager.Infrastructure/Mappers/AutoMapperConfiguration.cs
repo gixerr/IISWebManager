@@ -1,11 +1,9 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using IISWebManager.Application.DTO.ApplicationPools;
 using IISWebManager.Application.DTO.Applications;
 using IISWebManager.Application.DTO.Builds;
 using IISWebManager.Core.Domain;
 using IISWebManager.Infrastructure.Utils;
-using Microsoft.Web.Administration;
 using App = Microsoft.Web.Administration.Application;
 using ApplicationPool = Microsoft.Web.Administration.ApplicationPool;
 
