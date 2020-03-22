@@ -24,7 +24,7 @@ namespace IISWebManager.Api
         public void ConfigureServices(IServiceCollection services)
         {
             var servicesProvider = new ServicesProvider();
-            servicesProvider.Populate(services).LoadConfiguration(Configuration);
+            servicesProvider.Populate(services);
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

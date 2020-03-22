@@ -1,5 +1,4 @@
 ﻿using IISWebManager.Application.Exceptions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
@@ -26,11 +25,6 @@ namespace IISWebManager.Api.IoC.Providers
 
             Services = services;
 
-            return this;
-        }
-
-        public ServicesProvider LoadConfiguration(IConfiguration configuration)
-        {
             return this;
         }
     }
