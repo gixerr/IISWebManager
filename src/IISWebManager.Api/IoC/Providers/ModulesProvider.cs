@@ -10,6 +10,8 @@ namespace IISWebManager.Api.IoC.Providers
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<QueryModule>();
             builder.RegisterModule<FacadeModule>();
+            builder.RegisterModule<FactoryModule>();
+            builder.RegisterModule<SettingsModule>();
             builder.RegisterModule<ExceptionModule>();
         }
     }
