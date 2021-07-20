@@ -2,11 +2,12 @@
 
 namespace IISWebManager.Api.Controllers
 {
-    [Route("")]
+    [Route("home")]
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [HttpGet]
         public ActionResult Get()
-            => Ok("IIS Web Manager");
+            => Ok("IIS Web Manager API");
     }
 }
