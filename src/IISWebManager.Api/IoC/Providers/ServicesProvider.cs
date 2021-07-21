@@ -1,5 +1,6 @@
 ﻿using IISWebManager.Application.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
 namespace IISWebManager.Api.IoC.Providers
@@ -22,6 +23,15 @@ namespace IISWebManager.Api.IoC.Providers
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.Formatting = Formatting.Indented);
+
+            services.AddSwaggerGen(setupAction =>
+            {
+                setupAction.SwaggerDoc("OpenApi", new OpenApiInfo()
+                {
+                    Title = "IIS Web Manager API",
+                    Version = "1"
+                });
+            });
 
             Services = services;
 

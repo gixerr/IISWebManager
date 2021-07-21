@@ -44,6 +44,13 @@ namespace IISWebManager.Api
 
             app.UseErrorHandler();
             
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setupAction =>
+            {
+                setupAction.SwaggerEndpoint("/swagger/OpenApi/swagger.json", "IIS Web Manager API");
+            });
+            
             app.UseRouting();
 
             app.UseAuthorization();
