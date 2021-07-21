@@ -1,4 +1,5 @@
-﻿using IISWebManager.Application.Commands.ApplicationPools;
+﻿using System.ComponentModel.DataAnnotations;
+using IISWebManager.Application.Commands.ApplicationPools;
 using IISWebManager.Application.Queries.ApplicationPools;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
@@ -22,9 +23,9 @@ namespace IISWebManager.Api.Controllers
         }
 
         [HttpGet("contains")]
-        public ActionResult GetApplicationPoolsBySubstring([FromQuery] GetApplicationPoolsContainedSubstring query)
+        public ActionResult GetApplicationPoolsBySubstring([FromQuery][Required] string substring)
         {
-            var applicationPoolsDto = QueryDispatcher.Dispatch(query);
+            var applicationPoolsDto = QueryDispatcher.Dispatch(new GetApplicationPoolsContainedSubstring(substring));
 
             return Ok(applicationPoolsDto);
         }
