@@ -13,9 +13,9 @@ namespace IISWebManager.Api.Controllers
         }
 
         [HttpGet("{siteName}")]
-        public ActionResult Get([FromRoute] GetSiteBuilds query)
+        public ActionResult Get(string siteName)
         {
-            var buildsDto = QueryDispatcher.Dispatch(query);
+            var buildsDto = QueryDispatcher.Dispatch(new GetSiteBuilds(siteName));
 
             return Ok(buildsDto);
         }
