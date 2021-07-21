@@ -1,4 +1,5 @@
-﻿using IISWebManager.Application.Commands.Applications;
+﻿using System.ComponentModel.DataAnnotations;
+using IISWebManager.Application.Commands.Applications;
 using IISWebManager.Application.Queries.Applications;
 using IISWebManager.Infrastructure.Dispatchers.Command;
 using IISWebManager.Infrastructure.Dispatchers.Query;
@@ -32,7 +33,7 @@ namespace IISWebManager.Api.Controllers
 
         [HttpGet("applications/contains")]
         [HttpGet("{siteName}/applications/contains")]
-        public ActionResult GetApplicationBySubstring(string siteName, [FromQuery] string subString)
+        public ActionResult GetApplicationBySubstring(string siteName, [FromQuery][Required] string subString)
         {
             var applicationsDto = QueryDispatcher
                 .Dispatch(new GetApplicationsContainedSubstring(siteName, subString));
