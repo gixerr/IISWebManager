@@ -14,15 +14,15 @@ namespace IISWebManager.Api.Controllers
         }
         
         [HttpGet]
-        public ActionResult Get([FromQuery] BrowseApplicationPools query)
+        public ActionResult Browse()
         {
-            var applicationPoolsDto = QueryDispatcher.Dispatch(query);
+            var applicationPoolsDto = QueryDispatcher.Dispatch(new BrowseApplicationPools());
 
             return Ok(applicationPoolsDto);
         }
 
         [HttpGet("contains")]
-        public ActionResult Get([FromQuery] GetApplicationPoolsContainedSubstring query)
+        public ActionResult GetApplicationPoolsBySubstring([FromQuery] GetApplicationPoolsContainedSubstring query)
         {
             var applicationPoolsDto = QueryDispatcher.Dispatch(query);
 
@@ -30,9 +30,9 @@ namespace IISWebManager.Api.Controllers
         }
 
         [HttpGet("{name}")]
-        public ActionResult Get([FromRoute] GetApplicationPool query)
+        public ActionResult GetApplicationPoolByName(string name)
         {
-            var applicationPoolDto = QueryDispatcher.Dispatch(query);
+            var applicationPoolDto = QueryDispatcher.Dispatch(new GetApplicationPool(name));
 
             return Ok(applicationPoolDto);
         }
@@ -79,9 +79,9 @@ namespace IISWebManager.Api.Controllers
         }
 
         [HttpDelete("{name}")]
-        public ActionResult Delete([FromRoute] DeleteApplicationPool command)
+        public ActionResult Delete(string name)
         {
-            CommandDispatcher.Dispatch(command);
+            CommandDispatcher.Dispatch(new DeleteApplicationPool(name));
 
             return NoContent();
         }
