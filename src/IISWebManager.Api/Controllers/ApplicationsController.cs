@@ -9,53 +9,53 @@ namespace IISWebManager.Api.Controllers
     [Route("sites")]
     public class ApplicationsController : BaseController
     {
-        public ApplicationsController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher) 
+        public ApplicationsController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
             : base(commandDispatcher, queryDispatcher)
         {
         }
 
         [HttpGet("applications")]
-        public ActionResult Get([FromQuery] BrowseApplications query)
+        public ActionResult Browse()
         {
-            var applicationsDto = QueryDispatcher.Dispatch(query);
+            var applicationsDto = QueryDispatcher.Dispatch(new BrowseApplications());
 
             return Ok(applicationsDto);
         }
 
         [HttpGet("{siteName}/applications")]
-        public ActionResult Get([FromRoute] GetSiteApplications query)
+        public ActionResult GetApplications(string siteName)
         {
-            var applicationsDto = QueryDispatcher.Dispatch(query);
+            var applicationsDto = QueryDispatcher.Dispatch(new GetSiteApplications(siteName));
 
             return Ok(applicationsDto);
         }
 
         [HttpGet("applications/contains")]
         [HttpGet("{siteName}/applications/contains")]
-        public ActionResult Get(string siteName, [FromQuery] string subString)
+        public ActionResult GetApplicationBySubstring(string siteName, [FromQuery] string subString)
         {
-            var query = new GetApplicationsContainedSubstring(siteName, subString);
-            var applicationsDto = QueryDispatcher.Dispatch(query);
+            var applicationsDto = QueryDispatcher
+                .Dispatch(new GetApplicationsContainedSubstring(siteName, subString));
 
             return Ok(applicationsDto);
         }
-        
+
         [HttpGet("{siteName}/applications/{applicationName}")]
-        public ActionResult Get([FromRoute] GetApplication query)
+        public ActionResult GetApplicationByName(string siteName, string applicationName)
         {
-            var applicationPoolDto = QueryDispatcher.Dispatch(query);
+            var applicationPoolDto = QueryDispatcher.Dispatch(new GetApplication(siteName, applicationName));
 
             return Ok(applicationPoolDto);
         }
 
         [HttpGet("{siteName}/applications/{applicationName}/editableProperties")]
-        public ActionResult Get([FromRoute] GetEditableApplicationProperties query)
+        public ActionResult GetApplicationEditableProperties(string siteName, string applicationName)
         {
-            var applicationDto = QueryDispatcher.Dispatch(query);
+            var applicationDto = QueryDispatcher.Dispatch(new GetEditableApplicationProperties(siteName, applicationName));
 
             return Ok(applicationDto);
         }
-        
+
         [HttpPost("applications")]
         public ActionResult Add(AddApplication command)
         {
