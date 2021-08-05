@@ -31,3 +31,6 @@ Desktop.ini
 .DS_Store
 
 .idea
+
+/src/IISWebManager.Api/IISWebManager.Api.xml
+/src/IISWebManager.Application/IISWebManager.Application.xml
