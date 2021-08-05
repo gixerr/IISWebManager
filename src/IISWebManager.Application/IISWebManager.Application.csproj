@@ -9,6 +9,10 @@
     <DocumentationFile>IISWebManager.Application.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>IISWebManager.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\IISWebManager.Core\IISWebManager.Core.csproj" />
   </ItemGroup>
