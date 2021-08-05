@@ -5,6 +5,10 @@
     <LangVersion>9</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>IISWebManager.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\IISWebManager.Core\IISWebManager.Core.csproj" />
   </ItemGroup>

@@ -5,6 +5,12 @@
     <LangVersion>9</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>IISWebManager.Api.xml</DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\IISWebManager.Infrastructure\IISWebManager.Infrastructure.csproj" />
   </ItemGroup>
