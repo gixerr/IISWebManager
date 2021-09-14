@@ -55,6 +55,8 @@ namespace IISWebManager.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCors("AllCors");
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             

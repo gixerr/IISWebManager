@@ -48,6 +48,15 @@ namespace IISWebManager.Api.IoC.Providers
                 //TODO: Refactor
                 setupAction.IncludeXmlComments("C:/dev/codeRepo/projects/core/IISWebManager/src/IISWebManager.Application/IISWebManager.Application.xml");
             });
+            
+            services.AddCors(o => o.AddPolicy("AllCors", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+            
             Services = services;
 
             return this;
