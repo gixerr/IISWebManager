@@ -30,6 +30,9 @@ namespace IISWebManager.Infrastructure.Facades.ApplicationPools
         public void StopApplicationPool(ApplicationPool applicationPool)
             => applicationPool.Stop();
 
+        public void RecycleApplicationPool(ApplicationPool applicationPool) 
+            => applicationPool.Recycle();
+
         public void AddApplicationPool(string name, ManagedPipelineMode managedPipelineMode,
             string managedRuntimeVersion, bool autoStart)
         {
@@ -40,7 +43,7 @@ namespace IISWebManager.Infrastructure.Facades.ApplicationPools
             _serverManager.CommitChanges();
         }
 
-        public void UpdateApplicationPool() 
+        public void UpdateApplicationPool()
             => _serverManager.CommitChanges();
 
         public void DeleteApplicationPool(ApplicationPool applicationPool)

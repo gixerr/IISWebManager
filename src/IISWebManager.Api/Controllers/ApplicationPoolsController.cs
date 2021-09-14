@@ -96,6 +96,20 @@ namespace IISWebManager.Api.Controllers
             
             return NoContent();
         }
+        
+        /// <summary>
+        /// Recycles application pool
+        /// </summary>
+        /// <param name="name">Name of the desired application pool to recycle</param>
+        /// <response code="204">No Content</response>
+        [HttpPut("{name}/recycle")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public ActionResult Recycle(string name)
+        {
+            CommandDispatcher.Dispatch(new RecycleApplicationPool(name));
+
+            return NoContent();
+        }
 
         /// <summary>
         /// Creates new application pool
