@@ -19,10 +19,16 @@ namespace IISWebManager.Infrastructure.Handlers.Commands.ApplicationPools
         public void Handle(UpdateApplicationPool command)
         {
             command.ThrowIfNull(GetType().Name);
+
             var applicationPool = _applicationPoolFacade.GetApplicationPool(command.Name);
             applicationPool.ThrowIfNull(command.Name);
-            var newApplicationPool = _applicationPoolFacade.GetApplicationPool(command.NewName);
-            newApplicationPool.ThrowIfExists();
+
+            if (!command.Name.ToLower().Equals(command.NewName.ToLower()))
+            {
+                var newApplicationPool = _applicationPoolFacade.GetApplicationPool(command.NewName);
+                newApplicationPool.ThrowIfExists();
+            }
+
             applicationPool.Name = command.NewName;
             applicationPool.ManagedPipelineMode =
                 ApplicationPoolUtils.ParseToEnumOrThrow<ManagedPipelineMode>(command.ManagedPipelineMode);
